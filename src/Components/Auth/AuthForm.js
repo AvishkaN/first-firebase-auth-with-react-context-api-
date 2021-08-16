@@ -50,12 +50,13 @@ const AuthForm = () => {
           if (res.ok) { // ok 
             res.json().then(data=>{ // login or signUP
               console.log(data)
+              
+              const expirationTime=new Date(new Date().getTime()+(+data.expiresIn*1000));
+
               // WORKING WITH context
-                authCTX.login(data.idToken);
-                console.log(data.idToken);
-                console.log(authCTX);
-                history.replace('/');
+                authCTX.login(data.idToken,expirationTime);
               //
+              history.replace('/'); //  redirect
 
               return data;
             });
