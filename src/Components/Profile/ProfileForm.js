@@ -31,7 +31,6 @@ const ProfileForm = () => {
     }  
     }).then(res=>{
       console.log(res);
-      // redirect
       history.replace('/');
     })
   }

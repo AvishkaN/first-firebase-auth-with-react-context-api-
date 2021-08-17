@@ -8,7 +8,8 @@ const authContext=React.createContext({
 });
 
 export const AuthContextProvider=(props)=>{
-    const [token,setToken]=useState(null);
+    const initialState=localStorage.getItem('token');
+    const [token,setToken]=useState(initialState);
 
     console.log(token);
     const userIsLoggedIn=!!token; // cool mehtod for get boolean value
@@ -16,11 +17,13 @@ export const AuthContextProvider=(props)=>{
     const loginHandler=(tokenq)=>{
         setToken(tokenq);
         // console.log(token);
+        localStorage.setItem('token',tokenq);
         
     };
 
     const logoutHandler=()=>{
         setToken(null);
+        localStorage.removeItem('token');
     }
 
     const contextValue={

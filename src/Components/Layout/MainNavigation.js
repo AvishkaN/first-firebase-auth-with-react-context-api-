@@ -1,5 +1,5 @@
 import react,{useContext} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
 import AuthContext from '../../store/auth-context';
 
@@ -9,11 +9,15 @@ const MainNavigation = () => {
 
   const authCTX=useContext(AuthContext);
   const isLoggedIn=authCTX.isLoggedIn;
+  const history=useHistory();
 
   const handleLogOut=()=>{
     console.log(authCTX);
     authCTX.logOut();
-    // redirect 
+    console.log(history);
+    history.replace('/auth');
+    // <Redirect to='/auth' />
+    // <Redirect to='/auth' />
   }
 
   return (
